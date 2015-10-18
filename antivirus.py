@@ -7,6 +7,7 @@
 import os
 import platform
 import time
+import webbrowser
 from tkinter import *
 
 # Auto dir setup.
@@ -113,7 +114,6 @@ ext80 = '.bps'
 ext81 = '.epub.exe'
 # Extensions
 
-master = Tk()
 ideatxt = open("assets/idea.txt").read()
 def idea():
     print('opening')
@@ -356,23 +356,30 @@ def detection1():
     if extfiles == []:  
         done1()
 
-lic = "This program is free software: You can redistribute it and/or modify it under the terms of the General Public License version 3"
+lic = """This program is free software: You can redistribute it and/or modify it under the terms of the General Public License version 3
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
+EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND,
+EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.
+SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION."""
 imp = open("assets/IMPORTANT.txt").read()
 helptxt = open("assets/help.txt").read()
+def gpl():
+    webbrowser.open("http://www.gnu.org/licenses/gpl-3.0.en.html")
 def licinfo():
     print('opening')
     tk = Tk()
     tk.resizable(0, 0)
     tk.title("License")
     Label(tk, text=lic).grid(row=1, sticky=W)
-    Button(tk, text="Quit", command=tk.destroy).grid(row=2, column=2, sticky=W)
+    Button(tk, text="Return", command=tk.destroy).grid(row=2, column=1, sticky=W)
+    Button(tk, text="GPLv3", command=gpl).grid(row=2, column=0, sticky=W)
 def important():
     print('opening')
     tk = Tk()
     tk.resizable(0, 0)
     tk.title("IMPORTANT --> Content from IMPORTANT.txt")
     Label(tk, text=imp).grid(row=1, sticky=W)
-    Button(tk, text="Quit", command=tk.destroy).grid(row=2, column=2, sticky=W)
+    Button(tk, text="Return", command=tk.destroy).grid(row=2, column=2, sticky=W)
 def destroy():
     master.destroy()
     print("Exited cleanly")
@@ -383,26 +390,33 @@ def infohelp():
     tk.title("Help --> Content from help.txt")
     Label(tk, text=helptxt).grid(row=1, sticky=W)
     Button(tk, text="Return", command=tk.destroy).grid(row=2, sticky=W)
-    
-master.title("Mikicat's Antivirus™")
-master.resizable(0, 0)
-Button(master, text="Help", command=infohelp).grid(row=0, column=5, sticky=W)
-photo = PhotoImage(file="antivirus2.gif")
-label = Label(image=photo)
-label.image = photo 
-label.grid(row=1)
-Label(master, text="Today is %s !" % time.asctime()).grid(row=2, sticky=W)
-Label(master, text="\n").grid(row=3, sticky=W)
-Label(master, text="\n").grid(row=5, sticky=W)
-Label(master, text="By Mikicat || A Worldev project").grid(row=6, sticky=W)
-Label(master, text="\n").grid(row=7, sticky=W)
-Button(master, text="Start", underline=0, command=detection1).grid(row=8, column=2, sticky=W)
-Button(master, text="Quit", underline=0, command=destroy).grid(row=8, sticky=W)
-Button(master, text="License", underline=0, command=licinfo).grid(row=8, column=3, sticky=W)
-Button(master, text="Important", underline=0, command=important).grid(row=8, column=4, sticky=W)
-Button(master, text="Idea", underline=0, command=idea).grid(row=8, column=5, sticky=W)
 
-print("Starting tkinter cleanly")
+def main():
+    master = Tk()
+    master.title("Mikicat's Antivirus™")
+    master.resizable(0, 0)
+    Button(master, text="Help", command=infohelp).grid(row=0, column=5, sticky=W)
+    photo = PhotoImage(file="antivirus2.gif")
+    label = Label(image=photo)
+    label.image = photo 
+    label.grid(row=1)
+    Label(master, text="Today is %s !" % time.asctime()).grid(row=2, sticky=W)
+    Label(master, text="\n").grid(row=3, sticky=W)
+    Label(master, text="\n").grid(row=5, sticky=W)
+    Label(master, text="By Mikicat || A Worldev project").grid(row=6, sticky=W)
+    Label(master, text="\n").grid(row=7, sticky=W)
+    Button(master, text="Start", underline=0, command=detection1).grid(row=8, column=2, sticky=W)
+    Button(master, text="Quit", underline=0, command=destroy).grid(row=8, sticky=W)
+    Button(master, text="License", underline=0, command=licinfo).grid(row=8, column=3, sticky=W)
+    Button(master, text="Important", underline=0, command=important).grid(row=8, column=4, sticky=W)
+    Button(master, text="Idea", underline=0, command=idea).grid(row=8, column=5, sticky=W)
+
+    print("Starting tkinter cleanly")
+def __init__(self, tk):
+    self.tk = Tk()
+    self.Label(self.tk, text="A Worldev Project").pack(anchor=CENTER)
+    self.Button(self.tk, text="Continue" , command=main).pack(anchor=CENTER)
+
 
 mainloop()
 
