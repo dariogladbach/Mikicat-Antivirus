@@ -380,9 +380,7 @@ def important():
     tk.title("IMPORTANT --> Content from IMPORTANT.txt")
     Label(tk, text=imp).grid(row=1, sticky=W)
     Button(tk, text="Return", command=tk.destroy).grid(row=2, column=2, sticky=W)
-def destroy():
-    master.destroy()
-    print("Exited cleanly")
+
     time.sleep(0.5)
 def infohelp():
     tk = Tk()
@@ -390,7 +388,6 @@ def infohelp():
     tk.title("Help --> Content from help.txt")
     Label(tk, text=helptxt).grid(row=1, sticky=W)
     Button(tk, text="Return", command=tk.destroy).grid(row=2, sticky=W)
-
 def main():
     master = Tk()
     master.title("Mikicat's Antivirus™")
@@ -406,17 +403,12 @@ def main():
     Label(master, text="By Mikicat || A Worldev project").grid(row=6, sticky=W)
     Label(master, text="\n").grid(row=7, sticky=W)
     Button(master, text="Start", underline=0, command=detection1).grid(row=8, column=2, sticky=W)
-    Button(master, text="Quit", underline=0, command=destroy).grid(row=8, sticky=W)
+    Button(master, text="Quit", underline=0, command=master.destroy).grid(row=8, sticky=W)
     Button(master, text="License", underline=0, command=licinfo).grid(row=8, column=3, sticky=W)
     Button(master, text="Important", underline=0, command=important).grid(row=8, column=4, sticky=W)
     Button(master, text="Idea", underline=0, command=idea).grid(row=8, column=5, sticky=W)
 
     print("Starting tkinter cleanly")
-def __init__(self, tk):
-    self.tk = Tk()
-    self.Label(self.tk, text="A Worldev Project").pack(anchor=CENTER)
-    self.Button(self.tk, text="Continue" , command=main).pack(anchor=CENTER)
-
-
+main()
 mainloop()
 
